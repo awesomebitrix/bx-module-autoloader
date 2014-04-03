@@ -1,0 +1,21 @@
+{
+    "name": "pushin/bx-module-autoloader",
+    "type": "library",
+    "description": "Automatic bitrix modules including",
+    "homepage": "http://github.com/pushin/bx-module-autoloader",
+    "keywords": ["bitrix", "autoloading"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pushin Konstantin",
+            "email": "hello@pushin.pro",
+            "homepage": "http://pushin.pro"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": { "Pushin\\Bitrix\\ModuleAutoloader": "src" }
+    }
+}
