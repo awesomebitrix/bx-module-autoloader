@@ -5,28 +5,55 @@ use Pushin\Bitrix\ModuleAutoloader\MapperInterface;
 
 class StaticHardcodedMapper implements MapperInterface
 {
-    protected $mapping;
+    protected $map;
+
+    protected $baseMap;
+
+    protected $mergeMap;
 
     public function getModuleByClassName($className)
     {
-        $mapping = $this->getMapping();
-
-        return isset($mapping[$className]) ? $mapping[$className] : null;
+        $map = $this->getMap();
+        return isset($map[$className]) ? $map[$className] : null;
     }
 
-    protected function getMapping()
+    public function mergeMap($map)
     {
-        if (null === $this->mapping) {
-            $this->mapping = array();
-            foreach($this->getMappingSource() as $module => $classes) {
-                foreach(explode(' ', $classes) as $class) $this->mapping[$class] = $module;
-            }
-
-        }
-        return $this->mapping;
+        $this->resetMap();
+        $this->mergeMap = array_merge($this->mergeMap, $this->normalizeMap($map));
     }
 
-    protected function getMappingSource()
+    protected function resetMap()
+    {
+        $this->map = array();
+    }
+
+    protected function getMap()
+    {
+        if (null === $this->map) {
+            $this->map = $this->buildMap();
+        }
+        return $this->map;
+    }
+
+    protected function buildMap()
+    {
+        return array_merge(
+            $this->normalizeMap($this->getBaseMap()),
+            $this->mergeMap
+        );
+    }
+
+    protected function normalizeMap($map)
+    {
+        $normalMap = array();
+        foreach($map as $module => $classes) {
+            foreach(explode(' ', $classes) as $class) $normalMap[$class] = $module;
+        }
+        return $normalMap;
+    }
+
+    protected function getBaseMap()
     {
         return array(
             'iblock' => 'CIBlock CIBlockElement CIBlockSection',
