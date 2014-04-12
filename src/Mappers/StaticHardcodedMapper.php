@@ -1,6 +1,8 @@
 <?php
 namespace Pushin\Bitrix\ModuleAutoloader\Mappers;
 
+use Pushin\Bitrix\ModuleAutoloader\AbstractMapper;
+
 class StaticHardcodedMapper extends AbstractMapper
 {
     protected function getBaseMap()
