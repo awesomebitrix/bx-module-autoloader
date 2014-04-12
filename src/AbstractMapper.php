@@ -1,7 +1,5 @@
 <?php
-namespace Pushin\Bitrix\ModuleAutoloader\Mappers;
-
-use Pushin\Bitrix\ModuleAutoloader\MapperInterface;
+namespace Pushin\Bitrix\ModuleAutoloader;
 
 abstract class AbstractMapper implements MapperInterface
 {
