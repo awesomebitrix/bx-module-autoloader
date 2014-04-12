@@ -1,5 +1,5 @@
 <?php
-namespace Pushin\Bitrix\ModuleAutoloader\Mappers\Tests;
+namespace Pushin\Bitrix\ModuleAutoloader\Tests;
 
 class ModuleAutoloaderTest extends TestCase
 {
