@@ -18,12 +18,12 @@ abstract class AbstractMapper implements MapperInterface
     public function mergeMap($map)
     {
         $this->resetMap();
-        $this->mergeMap = array_merge($this->mergeMap, $this->normalizeMap($map));
+        $this->mergeMap = array_merge((array) $this->mergeMap, $this->normalizeMap($map));
     }
 
     protected function resetMap()
     {
-        $this->map = array();
+        $this->map = null;
     }
 
     protected function getMap()
@@ -36,7 +36,7 @@ abstract class AbstractMapper implements MapperInterface
 
     protected function buildMap()
     {
-        return array_merge($this->getBaseMap(), $this->mergeMap);
+        return array_merge((array) $this->getBaseMap(), (array) $this->mergeMap);
     }
 
     abstract protected function getBaseMap();
@@ -45,7 +45,7 @@ abstract class AbstractMapper implements MapperInterface
     {
         $normalMap = array();
         foreach($map as $module => $classes) {
-            foreach(explode(' ', $classes) as $class) $normalMap[$class] = $module;
+            foreach(array_filter(explode(' ', $classes)) as $class) $normalMap[$class] = $module;
         }
         return $normalMap;
     }
