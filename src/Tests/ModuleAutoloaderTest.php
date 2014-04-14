@@ -11,6 +11,9 @@ use CModule;
 class ModuleAutoloaderTest extends TestCase
 {
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testAutoloaderInactionWhenModuleLoaded()
     {
         $mapper = $this->getMock('\Pushin\Bitrix\ModuleAutoloader\Mappers\StaticHardcodedMapper');
@@ -34,6 +37,9 @@ class ModuleAutoloaderTest extends TestCase
         $this->assertFalse($autoloadInvoked);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testAutoload()
     {
         $this->assertFalse(class_exists('\CIBlockElement'));
@@ -55,6 +61,9 @@ class ModuleAutoloaderTest extends TestCase
 
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testRegister()
     {
         $mapper = new StaticHardcodedMapper();
