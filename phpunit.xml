@@ -1,4 +1,4 @@
-<phpunit>
+<phpunit bootstrap="phpunit_bootstrap.php" colors="true" processIsolation="true">
     <testsuites>
         <testsuite name="BitrixModuleAutoloader">
             <directory>src/Tests</directory>
